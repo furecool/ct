@@ -69,8 +69,7 @@
     <v-main>
       <keep-alive>
         <router-view/>
-      </keep-alive>      
-      <!-- <router-view :data = data /> -->
+      </keep-alive>
     </v-main>
   </v-app>
 </template>
@@ -82,17 +81,6 @@ export default {
   data: () => ({
     data: []
   }),
-  created() {
-    // let vm = this
-    // this.$ajax.get('/data.json')
-    // .then(function(response) {
-    //   vm.data = response.data.data
-    //   // console.log(vm.data)
-    // })
-    // .catch(function(err) { 
-    //     console.log(err)      
-    // })
-  },
   methods: {
     setActiveLanguage(lang) {
       localStorage.setItem('language', lang)

@@ -5,11 +5,10 @@
 
     <div>搜尋</div>    
     <div>
-      <input type="text" placeholder="請輸入關鍵字...">{{ $t('GENERAL.ITEMS') }}
+      <input v-model="keyWords" type="text" placeholder="請輸入關鍵字..." @keyup.enter="searchKey">{{ $t('GENERAL.ITEMS') }}
     </div>
-
     <ul>
-      <li v-for="li in obj.dialogue" :key="li.id">{{li}}</li>
+      <li v-for="(li, index) in obj.dialogue" :key="index" v-html="li"></li>
     </ul>
 
     <div @click="toogleMemo">備忘錄</div> 
@@ -31,6 +30,8 @@
     name: 'PaulView',
     data() {
       return {
+        keyWords: "",
+        results: [],
         memoDisplay: false,
         obj: {},
         items: [
@@ -61,9 +62,43 @@
       })
       .catch(function(err) { 
           console.log(err)      
-      })
+      })      
     },
     methods: {
+      clearTimer () {
+        if (this.timer) {
+          clearTimeout(this.timer)
+        }
+      },
+      searchKey() {
+        let vm = this
+        this.clearTimer()
+        this.timer = setTimeout(() => {
+          this.$ajax.get('/data.json')
+          .then(function(response) {
+            vm.data = response.data.data
+            vm.data.forEach(function(item){
+              if(item.name=="保羅"){
+                vm.obj = item
+                vm.searchColor(vm.obj.dialogue)
+              }
+            })
+          })
+        }, 100)
+      },
+      searchColor(makeArr) {
+        let vm = this
+        makeArr.map(function(item, index) {
+          if(vm.keyWords && vm.keyWords.length>0) {
+            let replaceReg = new RegExp(vm.keyWords, 'g')
+            let replaceString = '<span style="background: yellow;">' + vm.keyWords + '</span>'
+            makeArr[index] = item.replace(
+              replaceReg,
+              replaceString
+            )
+          }
+        })
+      },
       toogleMemo() {
         this.memoDisplay = !this.memoDisplay
       },
