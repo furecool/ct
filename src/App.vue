@@ -37,8 +37,40 @@
       </v-btn>
     </v-app-bar> -->
 
+    <div>
+      <button data-lang="tw" @click="setLang">中文</button>
+      <button data-lang="en" @click="setLang">English</button>
+    </div>
+
+    <nav>
+      <div class="router">
+        <router-link to="/">
+          <div class="three-d-btn">Home</div>
+        </router-link>
+        <router-link to="/paul">
+          <div class="three-d-btn">保羅</div>
+        </router-link>
+        <router-link to="/jack">
+          <div class="three-d-btn">傑克</div>
+        </router-link>
+        <router-link to="/jason">
+          <div class="three-d-btn">傑森</div>
+        </router-link>
+      </div>
+    </nav>
+
+    <div>
+      <h1>{{ $t('GENERAL.FRIENDS_LIST') }}</h1>
+      <h1>{{ $t('GENERAL.ITEMS') }}</h1>
+      <h1>{{ $t('GENERAL.MESSAGE') }}</h1>
+      <h1>{{ $t('GENERAL.ADD') }}</h1>
+    </div>
+
     <v-main>
-      <router-view :msg="$t('GENERAL.WELCOME_WORD')"/>
+      <keep-alive>
+        <router-view/>
+      </keep-alive>      
+      <!-- <router-view :data = data /> -->
     </v-main>
   </v-app>
 </template>
@@ -47,10 +79,30 @@
 
 export default {
   name: 'App',
-
   data: () => ({
-    //
+    data: []
   }),
+  created() {
+    // let vm = this
+    // this.$ajax.get('/data.json')
+    // .then(function(response) {
+    //   vm.data = response.data.data
+    //   // console.log(vm.data)
+    // })
+    // .catch(function(err) { 
+    //     console.log(err)      
+    // })
+  },
+  methods: {
+    setActiveLanguage(lang) {
+      localStorage.setItem('language', lang)
+    },
+    setLang(evt) {
+      const lang = evt.target.dataset.lang
+      this.setActiveLanguage(lang)
+      return history.go(0)
+    },
+  }
 };
 </script>
 <style>
@@ -61,5 +113,19 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
 }
 </style>
