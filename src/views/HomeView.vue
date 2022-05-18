@@ -1,15 +1,25 @@
-<template> 
-  <hello-world />
+<template>
+  <div>
+    <h1>Hello!</h1>
+  </div>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
 
   export default {
     name: 'HomeView',
 
     components: {
-      HelloWorld,
     },
+
+    created() {
+      this.$ajax.get('/data.json')
+      .then(function(response) {
+        console.log(response.data)
+      })
+      .catch(function(err) { 
+          console.log(err)      
+      })
+    }
   }
 </script>
