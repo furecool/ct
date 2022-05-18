@@ -42,6 +42,13 @@
       <button data-lang="en" @click="setLang">English</button>
     </div>
 
+    <div>
+      <div>{{ $t('GENERAL.FRIENDS_LIST') }}(3)</div>
+      <!-- <div>{{ $t('GENERAL.ITEMS') }}</div> -->
+      <!-- <div>{{ $t('GENERAL.MESSAGE') }}</div> -->
+      <!-- <div>{{ $t('GENERAL.ADD') }}</div> -->
+    </div>
+
     <nav>
       <div class="router">
         <router-link to="/">
@@ -58,13 +65,6 @@
         </router-link>
       </div>
     </nav>
-
-    <div>
-      <div>{{ $t('GENERAL.FRIENDS_LIST') }}</div>
-      <div>{{ $t('GENERAL.ITEMS') }}</div>
-      <!-- <div>{{ $t('GENERAL.MESSAGE') }}</div> -->
-      <!-- <div>{{ $t('GENERAL.ADD') }}</div> -->
-    </div>
 
     <v-main>
       <keep-alive>

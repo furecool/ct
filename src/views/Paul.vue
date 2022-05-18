@@ -3,6 +3,11 @@
 
     <h1>{{obj.name}}</h1>
 
+    <div>搜尋</div>    
+    <div>
+      <input type="text" placeholder="請輸入關鍵字...">{{ $t('GENERAL.ITEMS') }}
+    </div>
+
     <ul>
       <li v-for="li in obj.dialogue" :key="li.id">{{li}}</li>
     </ul>
