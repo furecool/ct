@@ -7,10 +7,10 @@
       <li v-for="li in obj.dialogue" :key="li.id">{{li}}</li>
     </ul>
 
-    <input v-model="newStr" :placeholder="$t('GENERAL.MESSAGE')"/>
-    <button @click="addMemo">{{ $t('GENERAL.ADD') }}</button>
- 
-    <div>
+    <div @click="toogleMemo">備忘錄</div> 
+    <div v-if="memoDisplay">
+      <input v-model="newStr" :placeholder="$t('GENERAL.MESSAGE')"/>
+      <button @click="addMemo">{{ $t('GENERAL.ADD') }}</button>
       <div v-for="(item, index) in items" :key="index">
         <p>{{item.date}} {{item.time}}</p>
         <p>{{item.text}}</p>
@@ -26,6 +26,7 @@
     name: 'PaulView',
     data() {
       return {
+        memoDisplay: false,
         obj: {},
         items: [
           {
@@ -58,6 +59,9 @@
       })
     },
     methods: {
+      toogleMemo() {
+        this.memoDisplay = !this.memoDisplay
+      },
       addMemo() {
         var Today=new Date();
         this.items.push(
