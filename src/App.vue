@@ -60,10 +60,10 @@
     </nav>
 
     <div>
-      <h1>{{ $t('GENERAL.FRIENDS_LIST') }}</h1>
-      <h1>{{ $t('GENERAL.ITEMS') }}</h1>
-      <h1>{{ $t('GENERAL.MESSAGE') }}</h1>
-      <h1>{{ $t('GENERAL.ADD') }}</h1>
+      <div>{{ $t('GENERAL.FRIENDS_LIST') }}</div>
+      <div>{{ $t('GENERAL.ITEMS') }}</div>
+      <!-- <div>{{ $t('GENERAL.MESSAGE') }}</div> -->
+      <!-- <div>{{ $t('GENERAL.ADD') }}</div> -->
     </div>
 
     <v-main>
