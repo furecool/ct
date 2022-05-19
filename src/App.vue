@@ -1,73 +1,70 @@
 <template>
     <v-app>
-        <!-- <v-app-bar
-        app
-        color="primary"
-        dark
-        >
-        <div class="d-flex align-center">
-            <v-img
-            alt="Vuetify Logo"
-            class="shrink mr-2"
-            contain
-            src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-            transition="scale-transition"
-            width="40"
-            />
+    <!-- 側邊導覽列 -->
+    <v-navigation-drawer permanent flat app>
+        <!-- 選單 -->
+        <v-list dense>
+            <v-list-item>
+            <!-- <v-list-item-icon>
+                <v-icon>mdi-*</v-icon>
+            </v-list-item-icon> -->
+            <v-list-item-content>
+                <v-list-item-title>{{ $t('GENERAL.FRIENDS_LIST') }}(3)</v-list-item-title>
+            </v-list-item-content>
+            </v-list-item>
+        </v-list>
+        <!-- 網頁標題 -->
+        <v-list-item to="/paul">
+            <v-list-item-avatar>
+                <v-img src="../public/img/avatar-paul.jpg"></v-img>
+                <!-- <v-img src="https://randomuser.me/api/portraits/men/14.jpg"></v-img> -->
+            </v-list-item-avatar>
+            <v-list-item-content d-flex flex-row>
+                <v-list-item-title class="title"> 保羅 </v-list-item-title>
+            </v-list-item-content>
+        </v-list-item>
+        <v-list-item to="/jack">
+            <v-list-item-avatar>
+                <v-img src="../public/img/avatar-jack.jpg"></v-img>
+                <!-- <v-img src="https://randomuser.me/api/portraits/men/32.jpg"></v-img> -->
+            </v-list-item-avatar>
+            <v-list-item-content>
+                <v-list-item-title class="title"> 傑克 </v-list-item-title>
+            </v-list-item-content>
+        </v-list-item>
+        <v-list-item to="/jason">
+            <v-list-item-avatar>
+                <v-img src="../public/img/avatar-jason.jpg"></v-img>
+                <!-- <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img> -->
+            </v-list-item-avatar>
+            <v-list-item-content>
+                <v-list-item-title class="title"> 傑森 </v-list-item-title>
+            </v-list-item-content>
+        </v-list-item>
+        <v-divider></v-divider>
+    </v-navigation-drawer>
 
-            <v-img
-            alt="Vuetify Name"
-            class="shrink mt-1 hidden-sm-and-down"
-            contain
-            min-width="100"
-            src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-            width="100"
-            />
-        </div>
-
+    <!-- 頂部導覽列 -->
+    <v-app-bar app color="#4A90E2" dark dense flat>
+        <v-app-bar-title to="/">Cherri Chat</v-app-bar-title>
         <v-spacer></v-spacer>
+        <button class="lang-btn" :class="{ active:$i18n.locale=='tw' }" data-lang="tw" @click="setLang">中文</button>
+        <button class="lang-btn" :class="{ active:$i18n.locale=='en' }" data-lang="en" @click="setLang">English</button>
+        <v-divider class="mx-4" vertical color=white></v-divider>
+        <v-avatar size="36" class="mx-2">
+            <img src="../public/img/avatar-jessica.jpg">
+            <!-- <img src="https://randomuser.me/api/portraits/women/81.jpg"> -->
+        </v-avatar>
+        <v-app-bar-title border="left">潔西卡</v-app-bar-title>
+    </v-app-bar>
 
-        <v-btn
-            href="https://github.com/vuetifyjs/vuetify/releases/latest"
-            target="_blank"
-            text
-        >
-            <span class="mr-2">Latest Release</span>
-            <v-icon>mdi-open-in-new</v-icon>
-        </v-btn>
-        </v-app-bar> -->
+    <!-- 內容區塊 -->
+    <v-main>
+        <v-container>
+            <router-view></router-view>
+        </v-container>
+    </v-main>
 
-        <div>
-            <button data-lang="tw" @click="setLang">中文</button>
-            <button data-lang="en" @click="setLang">English</button>
-        </div>
-        <div>
-            <div>{{ $t('GENERAL.FRIENDS_LIST') }}(3)</div>
-            <!-- <div>{{ $t('GENERAL.ITEMS') }}</div> -->
-            <!-- <div>{{ $t('GENERAL.MESSAGE') }}</div> -->
-            <!-- <div>{{ $t('GENERAL.ADD') }}</div> -->
-        </div>
-        <nav>
-            <div class="router">
-                <router-link to="/">
-                    <div class="three-d-btn">Home</div>
-                </router-link>
-                <router-link to="/paul">
-                    <div class="three-d-btn">保羅</div>
-                </router-link>
-                <router-link to="/jack">
-                    <div class="three-d-btn">傑克</div>
-                </router-link>
-                <router-link to="/jason">
-                    <div class="three-d-btn">傑森</div>
-                </router-link>
-            </div>
-        </nav>
-        <v-main>
-            <keep-alive>
-                <router-view/>
-            </keep-alive>
-        </v-main>
     </v-app>
 </template>
 
@@ -99,18 +96,18 @@ export default {
     color: #2c3e50;
     margin-top: 60px;
 }
-h3 {
-    margin: 40px 0 0;
-}
 ul {
     list-style-type: none;
-    padding: 0;
 }
-li {
-    display: inline-block;
-    margin: 0 10px;
+.lang-btn {
+    font-size: 12px;
+    margin: 3px;
+    padding: 2px 15px;
+    border: 1px solid white;
+    border-radius: 20px;
 }
-a {
-    color: #42b983;
+.active {
+    background: white;
+    color: #4A90E2;
 }
 </style>
