@@ -9,7 +9,7 @@
                 placeholder="請輸入關鍵字..."
                 @keyup.enter="searchKey"
             />
-            {{ $t('GENERAL.ITEMS') }}
+            {{keyAmount}} {{ $t('GENERAL.ITEMS') }}
         </div>
         <ul>
             <li
@@ -37,7 +37,7 @@ export default {
     data() {
         return {
             keyWords: "",
-            results: [],
+            keyAmount: 0,
             memoDisplay: false,
             obj: {},
             items: [
@@ -93,18 +93,18 @@ export default {
             }, 100)
         },
         searchColor(makeArr) {
-            let vm = this
-            makeArr.map(function(item, index) {
-                if (vm.keyWords && vm.keyWords.length > 0) {
-                    let replaceReg = new RegExp(vm.keyWords, 'g')
-                    let replaceString =
-                        '<span style="background: yellow;">' + vm.keyWords + '</span>'
+            let replaceReg = new RegExp(this.keyWords, 'g')
+            let replaceString =
+                '<span style="background: yellow;">' + this.keyWords + '</span>'
+            if (this.keyWords && this.keyWords.length > 0) {
+                this.keyAmount = makeArr.toString().match(replaceReg).length
+                makeArr.map(function(item, index) {
                     makeArr[index] = item.replace(
                         replaceReg,
                         replaceString
                     )
-                }
-            })
+                })
+            }
         },
         toogleMemo() {
             this.memoDisplay = !this.memoDisplay
