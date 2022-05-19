@@ -2,7 +2,7 @@
     <div class="jack">
         <v-app-bar color="#fff">
             <v-avatar size="36" class="mx-2">
-                <img src="../../public/img/avatar-paul.jpg">
+                <img src="../../public/img/avatar-jack.jpg">
             </v-avatar>
             <v-app-bar-title>{{obj.name}}</v-app-bar-title>
             <v-spacer></v-spacer>
@@ -109,8 +109,10 @@ export default {
         }
     },
     created() {
+        let url = 'https://lincheyin.000webhostapp.com/data/data.json'
         let vm = this
-        this.$ajax.get('/data.json')
+        this.$ajax.get(url)
+        // this.$ajax.get('/data.json')
         .then(function(response) {
             vm.data = response.data.data
             vm.data.forEach(function(item) {
@@ -136,10 +138,12 @@ export default {
             }
         },
         searchKey() {
+            let url = 'https://lincheyin.000webhostapp.com/data/data.json'
             let vm = this
             this.clearTimer()
             this.timer = setTimeout(() => {
-                this.$ajax.get('/data.json')
+                this.$ajax.get(url)
+                // this.$ajax.get('/data.json')
                 .then(function(response) {
                     vm.data = response.data.data
                     vm.data.forEach(function(item) {
