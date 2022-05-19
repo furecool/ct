@@ -52,7 +52,36 @@ export default {
                     text:"備忘訊息2",
                 },
             ],
-            newStr: ''
+            newStr: '',
+            data: [
+                {
+                    "name": "保羅",
+                    "dialogue": [
+                        "保羅",
+                        "你好, 我是傑西卡",
+                        "我喜歡吃的食物有",
+                        "各種巧克力口味的甜點"
+                    ]
+                },
+                {
+                    "name": "傑克",
+                    "dialogue": [
+                        "傑克",
+                        "你好, 我是傑西卡",
+                        "我喜歡做的運動為",
+                        "游泳,跑步"
+                    ]
+                },
+                {
+                    "name": "傑森",
+                    "dialogue": [
+                        "傑森",
+                        "你好, 我是傑西卡",
+                        "我喜歡的動物為 ",
+                        "貓,狗"
+                    ]
+                }
+            ]
         }
     },
     created() {
@@ -68,7 +97,13 @@ export default {
         })
         .catch(function(err) { 
             console.log(err)      
-        })      
+        })   
+        
+        // vm.data.forEach(function(item) {
+        //     if (item.name=="傑森") {
+        //         vm.obj = item
+        //     }
+        // })
     },
     methods: {
         clearTimer() {
