@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkct"]=self["webpackChunkct"]||[]).push([[443],{6508:function(t,e,n){n.r(e),n.d(e,{default:function(){return i}});var u=function(){var t=this,e=t.$createElement;t._self._c;return t._m(0)},s=[function(){var t=this,e=t.$createElement,n=t._self._c||e;return n("div",{staticClass:"about"},[n("h1",[t._v("This is an about page")])])}],a={name:"AboutView",components:{}},c=a,l=n(1001),r=(0,l.Z)(c,u,s,!1,null,null,null),i=r.exports}}]);
+//# sourceMappingURL=about-legacy.b77ea28a.js.map
