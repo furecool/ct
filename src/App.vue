@@ -3,7 +3,7 @@
     <!-- 側邊導覽列 -->
     <v-navigation-drawer permanent flat app>
         <!-- 選單 -->
-        <v-list dense>
+        <v-list dense style="border-bottom:1px solid #6fddcb">
             <v-list-item>
             <!-- <v-list-item-icon>
                 <v-icon>mdi-*</v-icon>
@@ -14,7 +14,7 @@
             </v-list-item>
         </v-list>
         <!-- 網頁標題 -->
-        <v-list-item to="/paul">
+        <v-list-item to="/paul" style="border-bottom:1px solid #6fddcb">
             <v-list-item-avatar>
                 <v-img src="../public/img/avatar-paul.jpg"></v-img>
                 <!-- <v-img src="https://randomuser.me/api/portraits/men/14.jpg"></v-img> -->
@@ -23,7 +23,7 @@
                 <v-list-item-title class="title"> 保羅 </v-list-item-title>
             </v-list-item-content>
         </v-list-item>
-        <v-list-item to="/jack">
+        <v-list-item to="/jack" style="border-bottom:1px solid #6fddcb">
             <v-list-item-avatar>
                 <v-img src="../public/img/avatar-jack.jpg"></v-img>
                 <!-- <v-img src="https://randomuser.me/api/portraits/men/32.jpg"></v-img> -->
@@ -32,7 +32,7 @@
                 <v-list-item-title class="title"> 傑克 </v-list-item-title>
             </v-list-item-content>
         </v-list-item>
-        <v-list-item to="/jason">
+        <v-list-item to="/jason" style="border-bottom:1px solid #6fddcb">
             <v-list-item-avatar>
                 <v-img src="../public/img/avatar-jason.jpg"></v-img>
                 <!-- <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img> -->
@@ -45,7 +45,7 @@
     </v-navigation-drawer>
 
     <!-- 頂部導覽列 -->
-    <v-app-bar app color="#4A90E2" dark dense flat>
+    <v-app-bar app color="#4A90E2" dark flat>
         <v-app-bar-title to="/">Cherri Chat</v-app-bar-title>
         <v-spacer></v-spacer>
         <button class="lang-btn" :class="{ active:$i18n.locale=='tw' }" data-lang="tw" @click="setLang">中文</button>
@@ -60,9 +60,9 @@
 
     <!-- 內容區塊 -->
     <v-main>
-        <v-container>
+        <keep-alive>
             <router-view></router-view>
-        </v-container>
+        </keep-alive>            
     </v-main>
 
     </v-app>
@@ -94,7 +94,7 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
+    /* margin-top: 60px; */
 }
 ul {
     list-style-type: none;

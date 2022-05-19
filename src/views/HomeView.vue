@@ -16,6 +16,9 @@
   }
 </script>
 <style>
+.home {
+  margin: 50px auto;
+}
 h3 {
   color: #4A90E2;
 }

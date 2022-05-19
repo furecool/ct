@@ -1,40 +1,56 @@
 <template>
     <div class="paul">
-        <h1>{{obj.name}}</h1>
-        <div>搜尋<img src="../../public/img/ic_search.png" alt="" height="25"></div>    
-        <div>
+        <v-app-bar color="#fff">
+            <v-avatar size="36" class="mx-2">
+                <img src="../../public/img/avatar-paul.jpg">
+            </v-avatar>
+            <v-app-bar-title>{{obj.name}}</v-app-bar-title>
+            <v-spacer></v-spacer>
+            <v-btn fab width="30" height="30" @click="toogleSearch"><img src="../../public/img/ic_search.png" alt="" height="25"></v-btn>
+            <v-btn fab width="30" height="30" @click="toogleMemo"><img src="../../public/img/ic_note.png" alt="" height="25"></v-btn>
+        </v-app-bar>
+        <div v-if="isSearch" style="height: 50px;line-height: 50px;border-bottom: 1px solid #6fddcb">
             <input
                 v-model="keyWords"
                 type="text"
                 placeholder="請輸入關鍵字..."
                 @keyup.enter="searchKey"
+                style="outline-style: none;width:75%;"
             />
-            {{keyAmount}} {{ $t('GENERAL.ITEMS') }}
-            <img src="../../public/img/ic_close1.png" alt="" height="20">
+            <span style="color:grey;">{{keyAmount}} {{ $t('GENERAL.ITEMS') }}</span>
+            <v-btn fab width="15" height="15" class="mx-2">
+                <img @click="toogleSearch" src="../../public/img/ic_close1.png" alt="" height="20">
+            </v-btn>
         </div>
-        <ul>
-            <li
+        <v-container d-flex flex-column align-end justify-end style="height:300px;">
+            <v-chip color="#4A90E2" class="my-1" text-color="white"
                 v-for="(li, index) in obj.dialogue"
                 :key="index"
                 v-html="li"
-            ></li>
-        </ul>
-        <div>
-            <textarea name="" id="" cols="30" rows="2"></textarea>
+            ></v-chip>
+        </v-container>
+        <div style="width: 100%;height: 100px;line-height: 50px;border-top: 1px solid #6fddcb;display:flex;">
+            <textarea name="" id="" cols="30" rows="2" :placeholder="$t('GENERAL.MESSAGE')" style="outline-style: none ;resize:none;width:90%;padding-left:20px;"></textarea>
             <div>
                 <img src="../../public/img/ic_sent.png" alt="" height="20">
             </div>
         </div>
-        <div @click="toogleMemo">備忘錄<img src="../../public/img/ic_note.png" alt="" height="25"></div> 
-        <div v-if="memoDisplay">
-            <input v-model="newStr" :placeholder="$t('GENERAL.MESSAGE')" />
-            <button @click="addMemo">{{ $t('GENERAL.ADD') }}</button>
-            <div v-for="(item, index) in items" :key="index">
-                <p>{{item.date}} {{item.time}}</p>
-                <p>{{item.text}}</p>
-                <p @click="delMemo(index)">刪除<img src="../../public/img/ic_close2.png" alt="" height="10"></p>
+
+        <v-card v-if="memoDisplay" class="mx-auto pa-5 my-0" max-width="300" style="position:absolute;right:0;top:70px;">
+            <div>
+                <input v-model="newStr" :placeholder="$t('GENERAL.MESSAGE')" style="outline-style: none;width:100%;height:100px;border:1px solid #4A90E2;"/>
+                <v-btn @click="addMemo" class="my-2" color="#4A90E2" width="100%">{{ $t('GENERAL.ADD') }}</v-btn>
             </div>
-        </div>
+            <v-divider class="my-4" color=#6fddcb></v-divider>           
+            <div v-for="(item, index) in items" :key="index" style="width:100%;height:100px;border:1px solid #6fddcb;margin-top:5px;display:flex;justify-content:space-between;padding:2px 8px;">
+                <div>
+                    <p style="color: #4A90E2;">{{item.date}} {{item.time}}</p>
+                    <p>{{item.text}}</p>
+                </div>                
+                <p @click="delMemo(index)"><img src="../../public/img/ic_close2.png" alt="" height="10"></p>
+            </div>
+        </v-card>
+
     </div>
 </template>
 
@@ -43,6 +59,7 @@ export default {
     name: 'PaulView',
     data() {
         return {
+            isSearch: false,
             keyWords: "",
             keyAmount: 0,
             memoDisplay: false,
@@ -137,7 +154,7 @@ export default {
         searchColor(makeArr) {
             let replaceReg = new RegExp(this.keyWords, 'g')
             let replaceString =
-                '<span style="background: yellow;">' + this.keyWords + '</span>'
+                '<span style="background:yellow;color:black;">' + this.keyWords + '</span>'
             if (this.keyWords && this.keyWords.length > 0) {
                 this.keyAmount = makeArr.toString().match(replaceReg).length
                 makeArr.map(function(item, index) {
@@ -164,6 +181,9 @@ export default {
         },
         delMemo(index) {
             this.items.splice(index, 1)
+        },
+        toogleSearch() {
+            this.isSearch = !this.isSearch
         }
     }
 }
